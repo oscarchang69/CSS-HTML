@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+   
+
+    <style>
+        .block {
+            height: 500px;
+            background-color: rgb(139, 132, 131);
+            opacity: 0.9;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .loading {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+
+        .blockUI {
+            position: absolute;           
+            top: 0px;
+            left: 0px;
+            display: none;
+
+
+        }
+
+        .border-b {
+            border: 2px solid black;
+        }
+
+        .block-full-w {
+            width: 100%
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <button @click="showBlock" style="margin-bottom: 1500px">Show Block</button>
+        <div class="blockUI block-full-w ">
+            <div class="block block-full-w"></div>
+            <div class="loading block-full-w" style="text-align: center;">
+                <i class="fas fa-spinner  fa-spin fa-5x" style="color:rgb(254, 254, 255)"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                msg: "hi"
+            },           
+            methods: {
+                showBlock() {
+                    let blockUI = document.querySelector(".blockUI");
+                    let block = document.querySelector('.block');
+                    let load = document.querySelector('.loading');
+                    let scrollH = document.documentElement.scrollHeight; //計算整個頁面的高度(含scrollbar)
+                    let wh = window.innerHeight; //計算可見視窗的高度，用來處理loading圖示的垂直居中
+                    blockUI.setAttribute('style', `height:${scrollH}px`);
+                    block.setAttribute('style', `height:${scrollH}px`);
+                    load.setAttribute('style', `height:${wh}px;text-align: center; line-height:${wh}px`);
+                    blockUI.setAttribute('style', 'display:inline');
+                    setTimeout(() => {
+                        blockUI.setAttribute('style', 'display:none');
+                    }, 3000);
+
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

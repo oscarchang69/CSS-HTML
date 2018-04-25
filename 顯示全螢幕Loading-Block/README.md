@@ -1,2 +1,1 @@
-<p data-height="297" data-theme-id="0" data-slug-hash="MGeyRR" data-default-tab="html,result" data-user="oscarchang69" data-embed-version="2" data-pen-title="顯示全螢幕的Loading-Block" class="codepen">See the Pen <a href="https://codepen.io/oscarchang69/pen/MGeyRR/">顯示全螢幕的Loading-Block</a> by oscarchang69 (<a href="https://codepen.io/oscarchang69">@oscarchang69</a>) on <a href="https://codepen.io">CodePen</a>.</p>
-<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+# 嘗試不使用jquery的依賴，使用js原生地querySelect來處理

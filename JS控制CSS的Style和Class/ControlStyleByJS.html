@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        .fontRed {
+            color: red;
+        }
+
+        .fontBold {
+            font-weight: bold;
+        }
+
+        .myStyle {
+            font-size: 25px;
+            color: red;
+            width: 100%;
+            height: 300px;
+            border: 1px solid black;
+           
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            var d = document.querySelector('#mydiv');
+            d.style.width = "200px"
+            d.style.height = "200px"
+            d.style.border = "1px solid black";
+
+
+            var btn1 = document.querySelector('#mybtn1');
+            var btn2 = document.querySelector('#mybtn2');
+            var btn3 = document.querySelector('#mybtn3');
+
+            //使用element.style
+            btn1.addEventListener("click", function () {
+                d.style.width = "100px";
+                d.style.height = "100px";
+                d.style.backgroundColor = "blue";
+                d.setAttribute("class", d.getAttribute("class") + " fontBold");
+            })
+
+            //使用element.className
+            btn2.addEventListener("click", function () {
+               d.removeAttribute("style");
+               d.className="myStyle"
+
+            });
+
+
+            //還原初始
+            btn3.addEventListener("click", function () {
+                d.removeAttribute("style");
+                d.className = "";
+                d.style.width = "200px"
+                d.style.height = "200px"
+                d.style.border = "1px solid black";
+
+            });
+
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+
+    <button id="mybtn1">使用element.style</button>
+    <button id="mybtn2">使用element.className</button>
+    <button id="mybtn3">還原初始</button>
+
+    <div class="fontRed" id="mydiv">TEST</div>
+
+</body>
+
+</html>

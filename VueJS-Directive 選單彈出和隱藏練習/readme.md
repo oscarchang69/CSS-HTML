@@ -21,6 +21,16 @@ function documentHandler(e) {
     document.addEventListener('click', documentHandler);
 ```
 
+[myimg]:rm01.png "我的圖片"
+
+![myimg]
+
+---
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=YOUTUBE_VIDEO_ID_HERE" target="_blank">
+    <img src="rm01.png" alt="IMAGE ALT TEXT HERE" width="240" height="180" border="0" />
+</a>
+
+
 > handleClose函式寫在vue的方法中
 ```js
 var app = new Vue({

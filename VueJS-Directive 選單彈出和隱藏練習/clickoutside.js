@@ -1,9 +1,5 @@
 Vue.directive('clickoutside', {
-    bind: function (el, binding, vnode) {
-
-        console.log("1.=>" + el);
-        // console.log("2.=>" + e);
-
+    bind: function (el, binding, vnode) {  
 
         function documentHandler(e) {
             

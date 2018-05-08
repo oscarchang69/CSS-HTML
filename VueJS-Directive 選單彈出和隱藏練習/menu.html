@@ -11,11 +11,14 @@
 <body>
     
 <div id="app" v-cloak>
-    
+    <h5>點擊下拉選單以外的區域可以關閉</h5>
     <div class="main" v-clickoutside="handleClose">
-        <button @click="show=!show">點擊顯示下拉選單</button>
+        <button @click="show=!show">點擊我</button>
         <div class="dropdown" v-show="show">
-            <p>下拉選框的內容,點擊外面區域可以關閉</p>
+            <a href="#">項目功能1</a>
+            <a href="#">項目功能2</a>
+            <a href="#">項目功能3</a>
+           
         </div>
     </div>
 

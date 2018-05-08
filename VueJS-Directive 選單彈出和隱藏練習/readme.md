@@ -28,6 +28,8 @@ var app = new Vue({
 });
 ```
 
+<a href="http://example.com/" target="_blank">example</a>
+
 <a href="https://codepen.io/oscarchang69/pen/MGrygr" target="_blank">
 [ 線上展示 ]
 </a>

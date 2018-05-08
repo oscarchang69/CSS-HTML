@@ -28,8 +28,7 @@ var app = new Vue({
 });
 ```
 
-[link](http://www.google.com.tw){:target="_blank"}
-
+--- 
 <a href="https://codepen.io/oscarchang69/pen/MGrygr" target="_blank">
 [ 線上展示 ]
 </a>

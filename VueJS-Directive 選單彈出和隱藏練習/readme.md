@@ -28,7 +28,7 @@ var app = new Vue({
 });
 ```
 
-<a href="http://example.com/" target="_blank">example</a>
+[link](http://www.google.com.tw){:target="_blank"}
 
 <a href="https://codepen.io/oscarchang69/pen/MGrygr" target="_blank">
 [ 線上展示 ]

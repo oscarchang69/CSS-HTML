@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h3>改良版：利用to函式，改善以往使用 try catch 的繁瑣程式碼不見</h3>
+        <button @click="getData">Get RandomUser</button>
+    </div>
+    <script>
+        function to(promise) {
+            return promise
+                .then((data) => [null, data])
+                .catch(err => {
+                    return [err, undefined]
+                })
+        }
+
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                empInfor: {}
+            },
+            methods: {
+                async getData() {
+                    const [err1, s1] = await to(axios.get('https://randomuser.me/api/'));
+                    if (err1) {
+                        alert(`step1 error:${err1}`);
+                        return;
+                    }
+                    const [err2, s2] = await to(axios.get(
+                        `https://randomuser.me/api/?seed=${s1.data.info.seed}`));
+                    if (err2) {
+                        alert(`step1 error:${err2}`);
+                        return;
+                    }
+
+                    alert(s2.data.results[0].id.name);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

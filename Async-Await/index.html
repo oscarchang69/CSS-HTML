@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="getData">Get RandomUser</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                empInfor: {}
+            },
+            methods: {
+                getData() {
+
+                    //利用 async、await (先執行this.doStep1、再執行this.doStep2) 
+                    const stepAll = async () => {
+                        const s1 = await this.doStep1(); 
+                        const s2 = await this.doStep2(s1.info.seed);
+                        return [s1,s2];
+                    };
+
+                    stepAll().then(r=>{
+                        alert(r[1].results[0].id.name);
+                    })
+                },
+                doStep1() {
+                    return axios.get('https://randomuser.me/api/')
+                        .then(r => {
+                            return r.data;
+                        })
+                        .catch(e => {
+                            alert(`step1 error:${e}`);
+                        });
+                },
+                doStep2(seed) {
+                    return axios.get(`https://randomuser.me/api/?seed=${seed}`)
+                        .then(r => {
+                            return r.data;
+                        })
+                        .catch(e => {
+                            alert(`step2 error:${e}`);
+                        });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

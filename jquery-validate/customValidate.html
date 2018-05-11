@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+
+
+    <script>
+        $.validator.setDefaults({
+            submitHandler: function () {
+                alert("提交事件!");
+            }
+        });
+
+        function checkTotalLen(name1, name2) {
+            let totalLen = (name1 + name2).length;
+            if (totalLen > 5) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        jQuery.validator.addMethod('chkLen', function (value, element) {
+            console.log('element=>' + element);
+            let selfID = $(element).attr("id")
+            //let selfID = $(element).next().val();
+            let name2ID = selfID.substring(0, selfID.length - 1) + '2';
+            console.log('name2ID=' + name2ID);
+            return checkTotalLen(value, $('#' + name2ID).val());
+        });
+
+
+
+
+        $().ready(function () {
+            // 在键盘按下并释放及提交后验证提交表单
+            $("#signupForm").validate({
+                rules: {
+                    tab2_receiver1_1: {
+                        required: true,
+                        chkLen: true
+                    },
+                    tab2_receiver1_2: {                       
+                        chkLen: true
+
+                    },
+                    firstname: "required"
+                },
+                messages: {
+                    tab2_receiver1_1: {
+                        required: "太懶了..這欄位要填寫",
+                        chkLen: "兩個欄位總長度不能超過20個字"
+                    },
+                    tab2_receiver1_2: {                       
+                        chkLen: "兩個欄位總長度不能超過20個字"
+                    },
+                    firstname: "请输入您的名字"
+                }
+            })
+        });
+    </script>
+</head>
+
+<body>
+
+    <form class="cmxform" id="signupForm" method="get" action="">
+        <fieldset>
+            <legend>表單填寫</legend>
+            <p>
+                <label for="tab2_receiver1_1">資訊一</label>
+                <input id="tab2_receiver1_1" name="tab2_receiver1_1" type="text" chkLen>
+            </p>
+            <p>
+                <label for="tab2_receiver1_2">資訊二</label>
+                <input id="tab2_receiver1_2" name="tab2_receiver1_2" type="text" cklen>
+            </p>
+            <p>
+                <label for="firstname">名字</label>
+                <input id="firstname" name="firstname" type="text">
+            </p>
+
+            <p>
+                <input class="submit" type="submit" value="提交">
+            </p>
+        </fieldset>
+    </form>
+
+</body>
+
+</html>

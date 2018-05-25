@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+
+    <style>
+        table {
+            width: 500px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        td {
+            border-bottom: 1px solid #888888;
+            padding: 10px;
+        }
+
+        tr:nth-child(1) {
+            background-color: #7788aa;
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e8e8e8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="app">
+        <table>
+            <tr>
+                <td></td>
+                <td>id</td>
+                <td>name</td>
+            </tr>
+            <tr v-for="emp in emps">
+                <td>
+                    <a href="#" @click="editMode(emp)">編輯</a>
+                </td>
+                <template v-if="emp.edit">
+                    <td>
+                        <input type="input" v-model="emp.empid"> </td>
+                    <td>
+                        <input type="input" v-model="emp.empName">
+                    </td>
+                </template>
+                <template v-else>
+                    <td>{{emp.empid}}</td>
+                    <td>{{emp.empName}}</td>
+                </template>
+
+            </tr>
+        </table>
+
+        <script>
+            Vue.component("my-btn", {
+                template: `
+    <button>按鈕</button>
+    `,
+                data() {
+                    return {
+                        msg: "children msg"
+                    }
+                }
+            })
+
+            var app = new Vue({
+                el: "#app",
+                data: {
+                    msg: "Hello",
+                    emps: [{
+                            empid: "001",
+                            empName: "王大明1",
+                            edit: false
+                        },
+                        {
+                            empid: "002",
+                            empName: "王大明2",
+                            edit: false
+                        },
+                        {
+                            empid: "002",
+                            empName: "王大明3",
+                            edit: false
+                        },
+                        {
+                            empid: "004",
+                            empName: "王大明4",
+                            edit: false
+                        },
+                        {
+                            empid: "005",
+                            empName: "王大明5",
+                            edit: false
+                        },
+                        {
+                            empid: "006",
+                            empName: "王大明6",
+                            edit: false
+                        }
+                    ]
+                },
+                methods: {
+                    editMode(e) {
+                        this.emps.forEach(function (item, index, array) {
+                            if (item == e) {
+                                item.edit = true;
+                            } else {
+                                item.edit = false;
+                            }
+                        })
+
+                    }
+                }
+            })
+        </script>
+</body>
+
+</html>

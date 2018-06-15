@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="//unpkg.com/iview/dist/styles/iview.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+    <script src="https://unpkg.com/http-vue-loader"></script>
+    <script src="//unpkg.com/iview/dist/iview.min.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div style="margin:0 auto;width:30%;">
+            <ul style="padding:25px">
+                <li v-for="item in filterData">{{item.label}}</li>
+            </ul>
+            <Page :total="cityList.length" :page-size="pageSize" @on-change="onPageSizeChange"></Page>
+        </div>
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            computed: {
+                filterData() {
+                    const sourceData = this.cityList;
+
+                    //計算                
+                    const initIndex = this.pageSize * (this.currentPage - 1);
+
+                    //將目前頁次的資料範圍篩選出來
+                    let rtnAry = sourceData.filter((item, index) => {
+                        if (index >= initIndex && index < initIndex + this.pageSize) {
+                            return true;
+                        }
+                    })
+
+                    return rtnAry;
+                }
+            },
+            data: {
+                pageSize: 5,
+                currentPage: 1,
+                visible: false,
+                model10: [],
+                cityList: [{
+                        value: 'New York1',
+                        label: 'New York'
+                    },
+                    {
+                        value: 'London1',
+                        label: 'London'
+                    },
+                    {
+                        value: 'Sydney1',
+                        label: 'Sydney'
+                    },
+                    {
+                        value: 'Ottawa1',
+                        label: 'Ottawa'
+                    },
+                    {
+                        value: 'Paris1',
+                        label: 'Paris'
+                    },
+                    {
+                        value: 'Canberra1',
+                        label: 'Canberra'
+                    }
+                ],
+            },
+            methods: {                         
+                onPageSizeChange(e) {
+                    this.currentPage=e;
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
